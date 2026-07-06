@@ -49,6 +49,11 @@
         const opt = document.createElement("option");
         opt.value = item.id;
         opt.textContent = `${item.name} (PHP ${item.daily_rate}/day)`;
+        // Disable options for items that with status other than available
+        if (item.status != "available") {
+          opt.textContent = `(${item.status}) ${item.name} (PHP ${item.daily_rate}/day)`;
+          opt.disabled = true;
+        }
         select.appendChild(opt);
       });
     }

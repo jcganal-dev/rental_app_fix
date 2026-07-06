@@ -130,6 +130,10 @@ def create_booking():
     if equipment is None:
         return jsonify({"error": "Unknown equipment"}), 400
 
+    # Make sure that unavailable items ar blocked
+    if equipment["status"] != "available":
+        return jsonify({"error": f"${equipment['name']} is unavailable (${equipment['status']})"}), 400
+
     from_date = parse_date(data["from_date"])
     to_date = parse_date(data["to_date"])
     if to_date < from_date:
