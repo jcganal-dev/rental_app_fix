@@ -130,7 +130,7 @@ def create_booking():
     if equipment is None:
         return jsonify({"error": "Unknown equipment"}), 400
 
-    # Make sure that unavailable items ar blocked
+    # Make sure that unavailable items are blocked
     if equipment["status"] != "available":
         return jsonify({"error": f"${equipment['name']} is unavailable (${equipment['status']})"}), 400
     
