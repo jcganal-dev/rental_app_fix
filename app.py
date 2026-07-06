@@ -117,7 +117,7 @@ def availability():
     available = []
     for item in EQUIPMENT:
         conflict = find_conflicting_booking(item["id"], from_date, to_date, bookings)
-        if conflict is None:
+        if conflict is None and item["status"]=="available":
             available.append(item)
     return jsonify(available)
 
